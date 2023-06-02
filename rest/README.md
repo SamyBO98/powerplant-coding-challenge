@@ -13,4 +13,13 @@ Then it is said that the cost of generating power using windmills however is zer
 When I have my list ranked with the merit order i just loop through it and use the pmax until we reach the load.<br />
 ## Example
 I need to generate 480MW in one hour and after my rank i have: <br />
-["windpark2",0,36,21.6],["windpark1",0,150,90],["gasfiredsomewhatsmaller",40,210,4.96],["gasfiredbig1",100,460,7.1],["gasfiredbig2",100,460,7.1],["tj1",0,16,15.24]
+["windpark2",0,36,21.6],["windpark1",0,150,90],["gasfiredsomewhatsmaller",40,210,4.96],["gasfiredbig1",100,460,7.1],["gasfiredbig2",100,460,7.1],["tj1",0,16,15.24] <br />
+['name_powerplant",pmin,pmax,meritorder] <br />
+pmin and pmax are the power that we can use in a powerplant (pmin = switch on and we let it in the minimum and pmax = switch on and boost to max use) <br />
+<br />
+I first switch on the windpark2 to get 36MW, there is still 480 - 36 = 444Mw so i continue:<br />
+- windpark2 switch on to have 150MW there is still 444 - 150 = 294MW <br />
+- gasfiredsomewhatsmaller switch on to have 210MW there is still 294 - 210 = 84MW <br />
+<br />
+Now we can see that the next powerplant can generate between 100 and 460MW and we need only 84MW so for the last one we use pmin and we will generate all the load needed. <br />
+
