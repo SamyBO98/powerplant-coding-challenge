@@ -23,10 +23,11 @@ I first switch on the windpark2 to get 36MW, there is still 480 - 36 = 444Mw so 
 <br />
 Now we can see that the next powerplant can generate between 100 and 460MW and we need only 84MW so for the last one we use pmin and we will generate all the load needed. <br />
 <br />
-I decided to do that because i saw Belgium grid operator <br />
+I decided to do that because i saw Belgium grid operator: <br />
 
 
 ![grid](https://github.com/SamyBO98/powerplant-coding-challenge/assets/90256223/2a8d9da5-560e-4079-beca-4340fa466bb2)  <br />
  
+ As you can see the orange curve is the load predicted (here in our example 480MWh) and the blue one is the actual load created by all the powerplants. So, it is quite normal that instead of having 480MW we have here in my case a little bit more.
 
 
