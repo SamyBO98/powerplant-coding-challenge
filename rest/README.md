@@ -6,6 +6,8 @@ You have to make: pip install -r requirements.txt <br />
 ## Run the main.py
 Then to run the program you will have to type: <br />
 python3 main.py file_to_analyse.json file_to_display.json <br />
+Then go to http://127.0.0.1:8888/docs to see the endpoint /productionplan and then execute the POST method. <br />
+Yout file file_to_display.json in now full with the analysis of file_to_analyse.json
 <br />
 ## Few explanations
 For the merit order i saw that it is a way of ranking available sources of energy, especially electrical generation, based on ascending order of price so i calculated this to rank all the powerplants. <br />
