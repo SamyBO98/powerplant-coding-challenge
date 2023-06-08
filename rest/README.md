@@ -4,7 +4,7 @@ First you will need to install all needed dependencies (here fastapi used for th
 You have to make: pip install -r requirements.txt <br />
 <br />
 ## Run the main.py with uvicorn 
-Then to run the program you will have to type: <br />
+Then to run the program you will have to type in the folder **rest**: <br />
 uvicorn main:app --port=8888 <br />
 The prompt ask you to enter a file that you want to analyse, just type the .json file <br />
 Then it will ask you to enter the file where you want to output the result <br />
@@ -18,7 +18,12 @@ In the folder named **rest** type:  <br />
 Then when everything is setup type: <br />
 *docker run -it --publish 8888:8888 --name engie_challenge powerplant_coding_challenge* <br />
 As before you have to mention a file to analyse and a file to display the result of the analysis <br />
-You can now connect either on localhost:8888 or on 127.0.0.1:8888
+You can now connect either on localhost:8888 or on 127.0.0.1:8888 <br />
+To see the new file created you can type while running the docker: <br />
+*docker exec -it engie_challenge bash* <br />
+You are now in the docker engie_challenge <br />
+Just type *ls* and you should see **/code** meaning that the *mkdir /code* in the Dockerfile worked. <br />
+Then if you exec the POST you should see your results.
 ## Few explanations
 For the merit order i saw that it is a way of ranking available sources of energy, especially electrical generation, based on ascending order of price so i calculated this to rank all the powerplants. <br />
 Then it is said that the cost of generating power using windmills however is zero, so for me it means that we have to switch on windmills first because it is free so it will lower the consumption of fuels used to generate the load. <br />
