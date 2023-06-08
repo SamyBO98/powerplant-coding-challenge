@@ -1,25 +1,43 @@
 # Imports
 from fastapi import FastAPI ,HTTPException
 import json
-import uvicorn
 import sys
+
+# File input and result output 
+file_input = ''
+res_output = ''
+while file_input == '':
+    file_input = input("Please enter the file you want to analyse: ")
 
 
 # API Start
 app = FastAPI()
 
 # Open the file that we want to analyse 
-with open(sys.argv[1], 'r') as f:
-    file_ = json.load(f)
-    fuel = file_['fuels']
-    powerplants = file_['powerplants']
+try:
+    with open(str(file_input), 'r') as f:
+        file_ = json.load(f)
+        fuel = file_['fuels']
+        powerplants = file_['powerplants']
+except:
+    print('File to analyse does not exist')
+    sys.exit(1)
+
+
+while res_output == '':
+    res_output = input("Please enter the file to display the result: ")
+
+# Message in root to find all functions
+@app.get("/")
+async def root():
+    return {"message": "Root, you can go to /docs to find all functions"}
 
 
 # POST method on /productionplan endpoint
 # You can access all endpoints by typing http://127.0.0.1:8888/docs
 # We will store our final_dictionnary into a file provided by the 2nd argument in our command
 @app.post('/productionplan')
-def prod_plan(fi = sys.argv[2]):
+def prod_plan(fi = res_output):
     # PowerPlant + Turbojet list
     pp = []
     # WindTurbine list
@@ -77,9 +95,4 @@ def prod_plan(fi = sys.argv[2]):
         return HTTPException(status_code=404)
 
 
-#Main function to run app and to change port to 8888
-# python3 main.py file_analysed.json file_display_result.json
-# For example if we want to anaylse the json 'test.json' and display the result in 'res.json' we do: python3 main.py test.json res.json
-if __name__ == '__main__':
-    uvicorn.run(app, port=8888)
 
