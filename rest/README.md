@@ -3,12 +3,22 @@
 First you will need to install all needed dependencies (here fastapi used for the REST API and uvicorn to run the app) <br />
 You have to make: pip install -r requirements.txt <br />
 <br />
-## Run the main.py
+## Run the main.py with uvicorn 
 Then to run the program you will have to type: <br />
-python3 main.py file_to_analyse.json file_to_display.json <br />
+uvicorn main:app --port=8888 <br />
+The prompt ask you to enter a file that you want to analyse, just type the .json file <br />
+Then it will ask you to enter the file where you want to output the result <br />
 Then go to http://127.0.0.1:8888/docs to see the endpoint /productionplan and then execute the POST method. <br />
-Yout file file_to_display.json is now full with the analysis of file_to_analyse.json
+Yout file mentionned above is now full with the analysis
 <br />
+## Run the main.py with docker
+First you will have to install docker by your own (https://docs.docker.com/engine/install/ubuntu/) <br />
+In the folder named **rest** type:  <br />
+*docker image build --tag powerplant_coding_challenge .* (don't forget the point at the end to locate the Dockfile) <br />
+Then when everything is setup type: <br />
+*docker run -it --publish 8888:8888 --name engie_challenge powerplant_coding_challenge* <br />
+As before you have to mention a file to analyse and a file to display the result of the analysis <br />
+You can now connect either on localhost:8888 or on 127.0.0.1:8888
 ## Few explanations
 For the merit order i saw that it is a way of ranking available sources of energy, especially electrical generation, based on ascending order of price so i calculated this to rank all the powerplants. <br />
 Then it is said that the cost of generating power using windmills however is zero, so for me it means that we have to switch on windmills first because it is free so it will lower the consumption of fuels used to generate the load. <br />
